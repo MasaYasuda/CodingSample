@@ -23,7 +23,7 @@ const double DIAMETER = 200.0;
 MotorDriver motorDriver(PWMPIN, DIRPIN);
 SpeedMeter speedMeter(ENC_PINA, ENC_PINB, RESOLUTION, DIAMETER);
 
-volatile long nowSpeed=0;//割込み時に書き換えられる変数
+volatile long nowSpeed = 0; // 割込み時に書き換えられる変数
 
 // PID controller parameters
 const double Kp = 0.1;
@@ -32,20 +32,20 @@ const double Kd = 0.05;
 
 // PID controller object
 PIDController pid(Kp, Ki, Kd);
+volatile double pidOutValue = 0;
 
-volatile double pidOutValue=0;
-
-void timerHandler(){
-  nowSpeed=speedMeter.read();
-  pidOutValue=pid.calculate(nowSpeed);
+void timerHandler()
+{
+  nowSpeed = speedMeter.read();
+  pidOutValue = pid.calculate(nowSpeed);
 }
 
 void setup()
 {
   // Set PID controller GOalValue
   pid.setGoalValue(100.0);
-  Timer1.initialize(20000); //20msごとの割込み
-  Timer1.attachInterrupt(timerHandler); 
+  Timer1.initialize(20000); // 20msごとの割込み
+  Timer1.attachInterrupt(timerHandler);
 }
 
 void loop()

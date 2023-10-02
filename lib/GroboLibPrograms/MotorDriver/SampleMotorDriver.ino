@@ -1,5 +1,5 @@
 /**
- * @file SampleMotor.ino
+ * @file SampleMotorDriver.ino
  * @brief MotorDriver.hのサンプルプログラム
  * @author Yasuda Masanaga
  * @date 2023-9-27 作成
