@@ -34,9 +34,6 @@ void setup()
 }
 void loop()
 {
-  if () // ボタンが押されたら目標値を変更
-  {
-  }
   pidController.setGoalValue(goalPosition);
   int output = (int)pidController.calculate(encoder.read());
   motorDriver.write(output);

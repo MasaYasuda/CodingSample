@@ -2,7 +2,7 @@
  * @file MotorDriver.h
  * @brief Motorを操作するモジュール
  * @author Yasuda Masanaga
- * @date 2023-9-27
+ * @date 2023-9-27　作成
  */
 
 #ifndef MOTORDRIVER_H

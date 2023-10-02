@@ -2,7 +2,8 @@
  * @file SampleMotor.ino
  * @brief MotorDriver.hのサンプルプログラム
  * @author Yasuda Masanaga
- * @date 2023-9-27
+ * @date 2023-9-27 作成
+ * @date 2023-10-2 動作確認済み
 */
 
 #include <Arduino.h>
@@ -17,10 +18,10 @@ void setup(){
 
 }
 void loop(){
-  motorDriver.write(125);
-  delay(10);
-  motorDriver.write(-125);
-  delay(10);
+  motorDriver.write(60);
+  delay(1000);
+  motorDriver.write(-255);
+  delay(1000);
 }
 
 
