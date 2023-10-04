@@ -14,42 +14,42 @@ class MotorDriver;
 
 /**
  * @brief MotorDriverへの入力用クラス
- * @param (int)pwmPin
- * @param (int)dirPin
+ * @param (int16_t)pinPWM
+ * @param (int16_t)pinDir
  */
 class MotorDriver
 {
 public:
-  MotorDriver(int pwmPin, int dirPin)
+  MotorDriver(int16_t pinPWM, int16_t pinDir)
   {
-    _pwmPin = pwmPin;
-    _dirPin = dirPin;
-    pinMode(dirPin, OUTPUT);
+    _pinPWM = pinPWM;
+    _pinDir = pinDir;
+    pinMode(pinDir, OUTPUT);
   }
 
   /**
    * @brief DIR,PWM出力を行なう
-   * @param (int)speed -255~255の整数値
+   * @param (int16_t)speed -255~255の整数値
    * @note speed>0のときDIRピンはHIGH
    */
-  void write(int speed)
+  void write(int16_t speed)
   {
     speed = min(max(speed, -255), 255);
     if (speed > 0)
     {
-      digitalWrite(_dirPin, HIGH);
-      analogWrite(_pwmPin, speed);
+      digitalWrite(_pinDir, HIGH);
+      analogWrite(_pinPWM, speed);
     }
     else
     {
-      digitalWrite(_dirPin, LOW);
-      analogWrite(_pwmPin, -speed);
+      digitalWrite(_pinDir, LOW);
+      analogWrite(_pinPWM, -speed);
     }
   }
 
 private:
-  int _pwmPin;
-  int _dirPin;
+  int16_t _pinPWM;
+  int16_t _pinDir;
 };
 
 #endif

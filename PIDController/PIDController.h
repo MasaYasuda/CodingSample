@@ -14,14 +14,14 @@ class PIDController;
 
 /**
  * @brief PID制御計算用クラス
- * @param (double)Kp
- * @param (double)Ki
- * @param (double)Kd
+ * @param (float)Kp
+ * @param (float)Ki
+ * @param (float)Kd
  */
 class PIDController
 {
 public:
-  PIDController(double Kp, double Ki, double Kd)
+  PIDController(float Kp, float Ki, float Kd)
   {
     _Kp = Kp;
     _Ki = Ki;
@@ -34,46 +34,46 @@ public:
 
   /**
    * @brief 積分値上限を設定する
-   * @param (double)maxIntegral
+   * @param (float)maxIntegral
    */
-  void setmaxIntegral(double maxIntegral)
+  void setmaxIntegral(float maxIntegral)
   {
     _maxIntegral = maxIntegral;
   }
 
   /**
    * @brief 目標値を設定する
-   * @param (double)goalValue
+   * @param (float)goalValue
    */
-  void setGoalValue(double goalValue)
+  void setGoalValue(float goalValue)
   {
     _goalValue = goalValue;
   }
 
   /**
    * @brief 現在値を入力してPID制御の計算を実行する
-   * @param (double)nowValue
-   * @return (double)output
+   * @param (float)previousValue
+   * @return (float)output
    */
-  double calculate(double nowValue)
+  float calculate(float previousValue)
   {
-    double error = _goalValue - nowValue;
-    double errorDiff = error-_previousError;
+    float error = _goalValue - previousValue;
+    float errorDiff = error-_previousError;
     _previousError = error;
     _integral += error;
     _integral = min(max(_integral, -_maxIntegral), _maxIntegral);
-    double output = _Kp * error + _Ki * _integral + _Kd * errorDiff;
+    float output = _Kp * error + _Ki * _integral + _Kd * errorDiff;
     return output;
   }
 
 private:
-  double _Kp;
-  double _Ki;
-  double _Kd;
-  double _goalValue;
-  double _integral;
-  double _maxIntegral;
-  double _previousError;
+  float _Kp;
+  float _Ki;
+  float _Kd;
+  float _goalValue;
+  float _integral;
+  float _maxIntegral;
+  float _previousError;
 };
 
 #endif

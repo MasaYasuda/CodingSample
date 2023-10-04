@@ -9,10 +9,10 @@
 #include <Arduino.h>
 #include <MotorDriver.h>
 
-const int PWMPIN=8;
-const int DIRPIN=40;
+const int16_t PIN_PWM=8;
+const int16_t PIN_DIR=40;
 
-MotorDriver motorDriver(PWMPIN,DIRPIN);
+MotorDriver motorDriver(PIN_PWM,PIN_DIR);
 
 void setup(){
 

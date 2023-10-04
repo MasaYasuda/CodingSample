@@ -8,10 +8,14 @@
 #include <Arduino.h>
 #include "SpeedMeter.h"
 #include "TimerOne.h"
+const uint8_t PIN_ENC_A = 2;
+const uint8_t PIN_ENC_B = 10;
+const int16_t RESOLUTION = 8912;
+const float DIAMETER = 1000;
 
-SpeedMeter speedMeter(2, 10, 8192, 1000); // CUI AMTではResolutionは2048設定
-volatile double speed = 0;
-void timerHandler()//割込み関数
+SpeedMeter speedMeter(PIN_ENC_A, PIN_ENC_B, RESOLUTION, DIAMETER); // CUI AMT10シリーズでResolution設定が2048の場合
+volatile float speed = 0;
+void timerHandler() // 割込み関数
 {
   speed = speedMeter.speedRead();
 }
